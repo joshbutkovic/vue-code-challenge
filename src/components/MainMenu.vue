@@ -8,11 +8,9 @@
 
         <div id="main-menu" class="navbar-menu">
             <div class="navbar-end">
-                <a
-                    :key="item.index"
-                    v-for="item in navItems"
-                    class="navbar-item is-hoverable"
-                >{{item}}</a>
+                <router-link class="navbar-item is-hoverable" to="/benefits">Benefits</router-link>
+                <router-link class="navbar-item is-hoverable" to="/policies">Policies</router-link>
+                <router-link class="navbar-item is-hoverable" to="/safety">Safety</router-link>
             </div>
         </div>
     </nav>
@@ -32,7 +30,13 @@ export default {
 <style scoped lang="scss">
 .navbar {
     background-color: $menu-bg;
-    .navbar-item {
+    .navbar-brand a.navbar-item {
+        width: 20rem;
+    }
+    a.navbar-item {
+        .is-hoverable {
+            border: 1px solid red;
+        }
     }
 }
 </style>
