@@ -1,15 +1,20 @@
 <template>
-    <nav>
-        <ul class="nav-left">
-            <li>
-                <a>
-                    <img src="../assets/logo_white.png" alt />
-                </a>
-            </li>
-        </ul>
-        <ul class="nav-right">
-            <li v-for="item in navItems" :key="item.id">{{item}}</li>
-        </ul>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item">
+                <img src="../../src/assets/logo_white.png" />
+            </a>
+        </div>
+
+        <div id="main-menu" class="navbar-menu">
+            <div class="navbar-end">
+                <a
+                    :key="item.index"
+                    v-for="item in navItems"
+                    class="navbar-item is-hoverable"
+                >{{item}}</a>
+            </div>
+        </div>
     </nav>
 </template>
 
@@ -25,34 +30,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
-nav {
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    background: #000;
-    height: 3.25rem;
-    padding: 0 1rem;
-    color: #fff;
-    font-family: 'Montserrat', sans-serif;
-    .nav-left {
-        list-style: none;
-        flex-grow: auto;
-        li {
-            a {
-                img {
-                    width: 300px;
-                }
-            }
-        }
-    }
-    .nav-right {
-        display: flex;
-        flex-grow: 1;
-        justify-content: flex-end;
-        li {
-            font-size: 1rem;
-            margin-left: 1.5rem;
-        }
+.navbar {
+    background-color: $menu-bg;
+    .navbar-item {
     }
 }
 </style>
