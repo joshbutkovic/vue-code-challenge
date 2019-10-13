@@ -1,11 +1,5 @@
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.25sease;
-}
+$primary: #d21920;
+$black: #000;
+$white: #fff;
 
-.fade-enter,
-.fade-leave-active {
-    opacity: 0;
-}
-
-$menu-bg: #000;
+$menu-bg: $black;

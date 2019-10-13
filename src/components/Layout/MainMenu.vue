@@ -1,13 +1,16 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item">
+            <router-link class="navbar-item" to="/">
                 <img src="../../../src/assets/logo_white.png" />
-            </a>
+            </router-link>
         </div>
 
         <div id="main-menu" class="navbar-menu">
             <div class="navbar-end">
+                <a class="navbar-item is-hoverable">
+                    <font-awesome-icon icon="search" />
+                </a>
                 <router-link class="navbar-item is-hoverable" to="/benefits">Benefits</router-link>
                 <router-link class="navbar-item is-hoverable" to="/policies">Policies</router-link>
                 <router-link class="navbar-item is-hoverable" to="/safety">Safety</router-link>
@@ -17,8 +20,10 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 export default {
     name: 'MainMenu',
+    components: { FontAwesomeIcon },
     data() {
         return {
             navItems: ['Benefits', 'Safety', 'Policies'],
