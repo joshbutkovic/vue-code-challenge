@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HelloWorld from '@/components/views/HelloWorld';
-import Benefits from '@/components/views/Benefits';
-import Safety from '@/components/views/Safety';
-import Policies from '@/components/views/Policies';
+import HelloWorld from '@/components/Container/HelloWorld';
+import InfoCards from '@/components/Container/InfoCards';
 
 Vue.use(Router);
 
@@ -17,17 +15,20 @@ export default new Router({
         {
             path: '/benefits',
             name: 'Benefits',
-            component: Benefits,
-        },
-        {
-            path: '/safety',
-            name: 'Safety',
-            component: Safety,
+            component: InfoCards,
+            props: { cardType: 'benefits' },
         },
         {
             path: '/policies',
             name: 'Policies',
-            component: Policies,
+            component: InfoCards,
+            props: { cardType: 'policies' },
+        },
+        {
+            path: '/safety',
+            name: 'Safety',
+            component: InfoCards,
+            props: { cardType: 'safety' },
         },
     ],
 });

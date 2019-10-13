@@ -8,26 +8,13 @@
 </template>
 
 <script>
-import MainMenu from './components/MainMenu';
+import MainMenu from './components/Layout/MainMenu';
 export default {
     name: 'app',
     components: { MainMenu },
     created() {
-        // eslint-disable-next-line
-        console.log(this.$store);
-        this.$store.dispatch('benefits/loadBenefits');
+        this.$store.dispatch('data/loadData');
     },
 };
 </script>
 
-<style lang="scss" scoped>
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.25sease;
-}
-
-.fade-enter,
-.fade-leave-active {
-    opacity: 0;
-}
-</style>
