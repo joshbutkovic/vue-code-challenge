@@ -8,4 +8,7 @@ export const getters = {
     safety: state => {
         return state.safety;
     },
+    filteredBenefits: state => {
+        return state.data.filteredBenefits;
+    },
 };

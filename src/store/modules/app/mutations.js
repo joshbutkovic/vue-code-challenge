@@ -1,8 +1,8 @@
 import Vue from 'vue';
 
 export const mutations = {
-    loadBenefits(state, benefits) {
-        Vue.set(state, 'benefits', benefits);
+    setSearchTerm(state, searchTerm) {
+        Vue.set(state, 'searchTerm', searchTerm);
     },
     // addProduct(state, product) {
     //     let products = state.products;

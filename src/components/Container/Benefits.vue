@@ -1,15 +1,13 @@
 <template>
+    <!-- <div v-if="filteredBenefits" class="columns is-multiline">
+        <div v-for="item of filteredBenefits" v-bind:key="item.index" class="column is-3">
+            <card :title="item.title" :description="item.description" />
+        </div>
+    </div>-->
     <div class="columns is-multiline">
-        <!-- <transition name="fade" mode="out-in"> -->
-        <!-- <div v-if="benefits" class="card-wrapper"> -->
         <div v-for="item of benefits" v-bind:key="item.index" class="column is-3">
             <card :title="item.title" :description="item.description" />
         </div>
-        <!-- </div>
-        <div v-else class="column">
-            <h1 class="is-size-5">Benefits not loaded.</h1>
-        </div>-->
-        <!-- </transition> -->
     </div>
 </template>
 
@@ -23,10 +21,16 @@ export default {
     data() {
         return {
             test: 'test',
+            // filteredBenefits: null,
         };
+    },
+    mounted() {
+        // eslint-disable-next-line
+        console.log(this.benefits);
     },
     computed: {
         ...mapGetters('data', ['benefits']),
+        ...mapGetters('data', ['filteredBenefits']),
     },
 };
 </script>

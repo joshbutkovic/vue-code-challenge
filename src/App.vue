@@ -13,11 +13,12 @@
 
 <script>
 import MainMenu from './components/Layout/MainMenu';
+import benefitsJson from '../benefits.json';
 export default {
     name: 'app',
     components: { MainMenu },
     created() {
-        this.$store.dispatch('data/loadData');
+        this.$store.dispatch('data/loadData', benefitsJson);
     },
 };
 </script>

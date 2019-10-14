@@ -4,6 +4,7 @@ import { mutations } from './mutations';
 
 const state = {
     benefits: [],
+    filteredBenefits: [],
     policies: [],
     safety: [],
 };

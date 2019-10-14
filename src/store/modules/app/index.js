@@ -3,13 +3,12 @@ import { actions } from './actions';
 import { mutations } from './mutations';
 
 const state = {
-    benefits: [],
-    status: null,
+    searchTerm: null,
 };
 
 const namespaced = true;
 
-export const benefits = {
+export const app = {
     namespaced,
     state,
     getters,

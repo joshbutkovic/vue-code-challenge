@@ -4,9 +4,9 @@ import '../node_modules/bulma/css/bulma.css';
 import router from './router';
 import { store } from './store';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faSearch);
+library.add(faSearch, faWindowClose);
 
 Vue.config.productionTip = false;
 

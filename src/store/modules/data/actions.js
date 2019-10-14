@@ -1,7 +1,11 @@
-import benefitsJson from './../../../../benefits.json';
-
 export const actions = {
-    loadData(context) {
-        context.commit('loadData', benefitsJson);
+    loadData(context, data) {
+        context.commit('loadData', data);
+    },
+    searchBenefits(context, searchTerm) {
+        context.commit('searchBenefits', searchTerm);
+    },
+    filteredBenefits(context, benefits) {
+        context.commit('filteredBenefits', benefits);
     },
 };
