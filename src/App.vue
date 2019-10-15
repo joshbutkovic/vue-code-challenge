@@ -1,13 +1,9 @@
 <template>
     <div id="app">
         <main-menu />
-        <div class="section">
-            <div class="container is-fluid" style="margin-right: 0; margin-left: 0;">
-                <transition name="fade" mode="out-in">
-                    <router-view />
-                </transition>
-            </div>
-        </div>
+        <transition name="fade" mode="out-in">
+            <router-view />
+        </transition>
     </div>
 </template>
 
@@ -26,7 +22,7 @@ export default {
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.2s ease;
+    transition: opacity 0.25s ease;
 }
 
 .fade-enter,

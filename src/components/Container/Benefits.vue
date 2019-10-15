@@ -1,13 +1,17 @@
 <template>
-    <transition-group name="fade" tag="div" class="columns is-multiline is-mobile">
-        <div
-            class="column is-12-mobile is-half-tablet is-one-third-widescreen is-one-quarter-fullhd"
-            v-for="item of filteredBenefits"
-            v-bind:key="item.title"
-        >
-            <card :title="item.title" :description="item.description" :key="item.title" />
+    <div class="section">
+        <div class="container is-fluid" style="margin-right: 0; margin-left: 0;">
+            <transition-group name="fade" tag="div" class="columns is-multiline is-mobile">
+                <div
+                    class="column is-12-mobile is-half-tablet is-one-third-widescreen is-one-quarter-fullhd"
+                    v-for="item of filteredBenefits"
+                    v-bind:key="item.title"
+                >
+                    <card :title="item.title" :description="item.description" :key="item.title" />
+                </div>
+            </transition-group>
         </div>
-    </transition-group>
+    </div>
 </template>
 
 <script>
