@@ -2,48 +2,50 @@
     <div>
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <router-link class="navbar-item" to="/">
+                <router-link class="navbar-item navbar-logo" to="/">
                     <img src="../../../src/assets/logo_white.png" />
                 </router-link>
             </div>
             <div id="main-menu" class="navbar-menu">
-                <div v-if="!isSearchOpen" class="navbar-end">
-                    <a class="navbar-item is-hoverable" @click="toggleSearch">
-                        <font-awesome-icon icon="search" />
-                    </a>
-                    <router-link
-                        v-for="item of navItems"
-                        v-bind:key="item.index"
-                        class="navbar-item is-hoverable"
-                        :to="'/' + item.toLowerCase()"
-                    >{{item}}</router-link>
-                </div>
-                <div v-else class="navbar-end">
-                    <a class="navbar-item">
-                        <div class="field has-addons">
-                            <div class="control has-icons-left">
-                                <input
-                                    v-model="searchTerm"
-                                    @keyup="handleKeyup"
-                                    type="search"
-                                    class="input is-info"
-                                    placeholder="Search"
-                                />
-                                <span class="icon is-small is-left">
-                                    <font-awesome-icon icon="search" />
-                                </span>
+                <transition name="fade-long">
+                    <div v-if="!isSearchOpen" v-show="!isSearchOpen" class="navbar-end">
+                        <a class="navbar-item is-hoverable" @click="toggleSearch">
+                            <font-awesome-icon icon="search" />
+                        </a>
+                        <router-link
+                            v-for="item of navItems"
+                            v-bind:key="item.index"
+                            :class="'navbar-item is-hoverable ' + item.toLowerCase()"
+                            :to="'/' + item.toLowerCase()"
+                        >{{item}}</router-link>
+                    </div>
+                    <div v-else v-show="isSearchOpen" class="navbar-end">
+                        <a class="navbar-item">
+                            <div class="field has-addons">
+                                <div class="control has-icons-left">
+                                    <input
+                                        v-model="searchTerm"
+                                        @keyup="handleKeyPress"
+                                        type="search"
+                                        class="input is-info"
+                                        placeholder="Search"
+                                    />
+                                    <span class="icon is-small is-left">
+                                        <font-awesome-icon icon="search" />
+                                    </span>
+                                </div>
+                                <div class="control">
+                                    <a class="button is-info">
+                                        <font-awesome-icon icon="search" />
+                                    </a>
+                                </div>
+                                <div class="control" @click="toggleSearch">
+                                    <a class="button is-info">Close</a>
+                                </div>
                             </div>
-                            <div class="control">
-                                <a class="button is-info">
-                                    <font-awesome-icon icon="search" />
-                                </a>
-                            </div>
-                            <div class="control" @click="toggleSearch">
-                                <a class="button is-info">Close</a>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                </transition>
             </div>
         </nav>
     </div>
@@ -65,19 +67,9 @@ export default {
         toggleSearch() {
             this.isSearchOpen = !this.isSearchOpen;
         },
-        handleKeyup(e) {
+        handleKeyPress(e) {
             this.searchTerm = e.target.value;
-            this.$store.dispatch('data/filteredBenefits', [
-                { name: 'benefit 1' },
-                { name: 'benefit 2' },
-                { name: 'benefit 3' },
-            ]);
-            // this.searchTerm.length >= 2 &&
-            //     this.$store.dispatch('data/filteredBenefits', [
-            //         { name: 'benefit 1' },
-            //         { name: 'benefit 2' },
-            //         { name: 'benefit 3' },
-            //     ]);
+            this.$store.dispatch('app/setSearchTerm', this.searchTerm);
         },
     },
 };
@@ -104,13 +96,49 @@ export default {
 }
 .navbar {
     background-color: $menu-bg;
-    .navbar-brand a.navbar-item {
-        width: 20rem;
-    }
     a.navbar-item {
-        .is-hoverable {
-            border: 1px solid red;
+        color: #c0c0c0;
+        -webkit-transition: all 5ms ease-in-out;
+        transition: all 250ms ease-in-out;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            transform: scaleX(0);
+            background-color: $primary;
+            transition: transform 200ms;
         }
+        &:hover:not(.navbar-logo),
+        &:active:not(.navbar-logo) {
+            background-color: $menu-bg;
+            color: $white;
+            &:after {
+                transform: scaleX(1);
+            }
+        }
+        &:focus {
+            background-color: $menu-bg;
+            transition: none;
+        }
+    }
+    .navbar-brand a.navbar-item.navbar-logo {
+        width: 18.5rem;
+        &:hover {
+            transition: none !important;
+        }
+    }
+    .fade-long-enter-active,
+    .fade-long-leave-active {
+        transition: opacity 0.4s ease;
+    }
+
+    .fade-long-enter,
+    .fade-long-leave-active {
+        opacity: 0;
     }
 }
 </style>

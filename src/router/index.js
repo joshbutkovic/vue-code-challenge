@@ -6,6 +6,7 @@ import Benefits from '@/components/Container/Benefits';
 Vue.use(Router);
 
 export default new Router({
+    linkActiveClass: 'is-active',
     routes: [
         {
             path: '/',

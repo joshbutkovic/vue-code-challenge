@@ -1,14 +1,13 @@
 <template>
-    <!-- <div v-if="filteredBenefits" class="columns is-multiline">
-        <div v-for="item of filteredBenefits" v-bind:key="item.index" class="column is-3">
-            <card :title="item.title" :description="item.description" />
+    <transition-group name="fade" tag="div" class="columns is-multiline is-mobile">
+        <div
+            class="column is-12-mobile is-half-tablet is-one-third-widescreen is-one-quarter-fullhd"
+            v-for="item of filteredBenefits"
+            v-bind:key="item.title"
+        >
+            <card :title="item.title" :description="item.description" :key="item.title" />
         </div>
-    </div>-->
-    <div class="columns is-multiline">
-        <div v-for="item of benefits" v-bind:key="item.index" class="column is-3">
-            <card :title="item.title" :description="item.description" />
-        </div>
-    </div>
+    </transition-group>
 </template>
 
 <script>
@@ -21,20 +20,57 @@ export default {
     data() {
         return {
             test: 'test',
-            // filteredBenefits: null,
         };
-    },
-    mounted() {
-        // eslint-disable-next-line
-        console.log(this.benefits);
     },
     computed: {
         ...mapGetters('data', ['benefits']),
-        ...mapGetters('data', ['filteredBenefits']),
+        ...mapGetters('app', ['searchTerm']),
+        filteredBenefits() {
+            let benefits = this.benefits;
+            let filteredBenefits = [];
+            let lowerCaseTitle;
+            let lowerCaseDescription;
+            if (this.searchTerm.length >= 3) {
+                for (let item of benefits) {
+                    lowerCaseTitle = item['title'].toLowerCase();
+                    lowerCaseDescription = item['description'].toLowerCase();
+                    if (
+                        lowerCaseTitle.includes(
+                            this.searchTerm.toLowerCase(),
+                        ) ||
+                        lowerCaseDescription.includes(
+                            this.searchTerm.toLowerCase(),
+                        )
+                    ) {
+                        filteredBenefits.push(item);
+                    }
+                }
+            } else {
+                return benefits;
+            }
+            return filteredBenefits;
+        },
     },
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-move {
+    -webkit-transition: -webkit-transform 150ms;
+    transition: -webkit-transform 150ms;
+    transition: transform 150ms;
+    transition: transform 150ms, -webkit-transform 150ms;
+}
 </style>
 

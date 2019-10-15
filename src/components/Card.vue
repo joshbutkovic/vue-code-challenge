@@ -8,9 +8,6 @@
                 <p>{{description}}</p>
             </div>
         </div>
-        <footer class="card-footer">
-            <a href="#" class="card-footer-item">Acknowledge</a>
-        </footer>
     </div>
 </template>
 
@@ -27,6 +24,11 @@ export default {
 <style lang="scss" scoped>
 .card {
     height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    &:hover {
+        box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25),
+            0 5px 5px rgba(0, 0, 0, 0.22);
+    }
     .card-header {
         background-color: #d21920;
         .card-header-title {
@@ -36,8 +38,11 @@ export default {
         }
     }
     .card-content {
+        padding: 1rem;
+
         .content {
-            min-height: 10rem;
+            min-height: 14rem;
+            max-height: 14rem;
             overflow-y: scroll;
             & p {
                 font-size: 0.875rem;
