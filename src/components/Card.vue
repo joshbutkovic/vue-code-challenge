@@ -23,8 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    height: 100%;
+    height: 250px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid #b4b4b4;
     &:hover {
         box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25),
             0 5px 5px rgba(0, 0, 0, 0.22);
@@ -32,13 +33,13 @@ export default {
     .card-header {
         background-color: #d21920;
         .card-header-title {
-            padding: 8px 16px;
+            padding: 7px 16px;
             color: $white;
-            font-size: 16px;
+            font-size: 15px;
         }
     }
     .card-content {
-        padding: 1rem;
+        padding: 1.125rem;
 
         .content {
             min-height: 14rem;

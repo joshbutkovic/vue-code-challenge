@@ -9,7 +9,11 @@
             <div id="main-menu" class="navbar-menu">
                 <transition name="fade-long">
                     <div v-if="!isSearchOpen" v-show="!isSearchOpen" class="navbar-end">
-                        <a class="navbar-item is-hoverable" @click="toggleSearch">
+                        <a
+                            class="navbar-item is-hoverable"
+                            v-if="areBenefitsActive"
+                            @click="toggleSearch"
+                        >
                             <font-awesome-icon icon="search" />
                         </a>
                         <router-link
@@ -19,28 +23,25 @@
                             :to="'/' + item.toLowerCase()"
                         >{{item}}</router-link>
                     </div>
-                    <div v-else v-show="isSearchOpen" class="navbar-end">
-                        <a class="navbar-item">
+                    <div v-else class="navbar-end">
+                        <a :class="{ 'search-open': isSearchOpen }">
                             <div class="field has-addons">
-                                <div class="control has-icons-left">
+                                <div class="control">
                                     <input
                                         v-model="searchTerm"
                                         @keyup="handleKeyPress"
-                                        type="search"
+                                        type="text"
                                         class="input is-info"
-                                        placeholder="Search"
+                                        placeholder="Search Benefits"
                                     />
-                                    <span class="icon is-small is-left">
-                                        <font-awesome-icon icon="search" />
-                                    </span>
                                 </div>
-                                <div class="control">
+                                <!-- <div class="control">
                                     <a class="button is-info">
                                         <font-awesome-icon icon="search" />
                                     </a>
-                                </div>
+                                </div>-->
                                 <div class="control" @click="toggleSearch">
-                                    <a class="button is-info">Close</a>
+                                    <a class="button is-info">Back</a>
                                 </div>
                             </div>
                         </a>
@@ -63,13 +64,43 @@ export default {
             searchTerm: '',
         };
     },
+    mounted() {
+        console.log('BENEFITS');
+        console.log(this.areBenefitsActive);
+        console.log(this.$route);
+    },
     methods: {
         toggleSearch() {
             this.isSearchOpen = !this.isSearchOpen;
+            this.$store.dispatch('app/setSearchTerm', '');
+            this.searchTerm = '';
         },
         handleKeyPress(e) {
             this.searchTerm = e.target.value;
             this.$store.dispatch('app/setSearchTerm', this.searchTerm);
+            const { key } = event;
+            if (
+                (key === 'Backspace' || key === 'Delete') &&
+                this.searchTerm.length < 2
+            ) {
+                console.log('clear the searchTerm');
+                this.searchTerm = '';
+            }
+        },
+        resetBenefits() {
+            console.log('reset benefits called');
+            this.searchTerm = '';
+        },
+    },
+    computed: {
+        areBenefitsActive() {
+            return this.$route.path === '/benefits';
+        },
+    },
+    watch: {
+        $route(to, from) {
+            this.isSearchOpen = false;
+            this.searchTerm = '';
         },
     },
 };
@@ -96,10 +127,17 @@ export default {
 }
 .navbar {
     background-color: $menu-bg;
+    min-height: 3.4rem;
+    .button.is-info {
+        background: $primary;
+    }
     a.navbar-item {
-        color: #c0c0c0;
+        color: #ededed;
         -webkit-transition: all 5ms ease-in-out;
         transition: all 250ms ease-in-out;
+        font-size: 15px;
+        padding: 0 18px;
+        margin: 0 4px;
         &:after {
             content: '';
             position: absolute;
@@ -107,29 +145,42 @@ export default {
             left: 0;
             right: 0;
             width: 100%;
-            height: 3px;
+            height: 4px;
             transform: scaleX(0);
             background-color: $primary;
             transition: transform 200ms;
         }
         &:hover:not(.navbar-logo),
-        &:active:not(.navbar-logo) {
+        &:active:not(.navbar-logo),
+        &.is-active:not(.navbar-logo) {
             background-color: $menu-bg;
             color: $white;
             &:after {
                 transform: scaleX(1);
             }
         }
-        &:focus {
+        &:focus,
+        &:focus-within {
             background-color: $menu-bg;
             transition: none;
         }
     }
     .navbar-brand a.navbar-item.navbar-logo {
-        width: 18.5rem;
+        width: 19rem;
         &:hover {
             transition: none !important;
         }
+    }
+    a.search-open {
+        // color: #ededed;
+        // -webkit-transition: all 5ms ease-in-out;
+        // -webkit-transition: all 250ms ease-in-out;
+        // transition: all 250ms ease-in-out;
+        display: flex;
+        font-size: 15px;
+        padding: 0 18px;
+        margin: 0 4px;
+        align-items: center;
     }
     .fade-long-enter-active,
     .fade-long-leave-active {
