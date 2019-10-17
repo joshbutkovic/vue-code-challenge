@@ -8,6 +8,7 @@ import Safety from '@/components/Container/Safety';
 Vue.use(Router);
 
 export default new Router({
+    mode: 'history',
     linkActiveClass: 'is-active',
     routes: [
         {
