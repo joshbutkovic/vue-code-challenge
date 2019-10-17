@@ -7,41 +7,39 @@
                 </router-link>
             </div>
             <div id="main-menu" class="navbar-menu">
-                <transition name="toggle-search">
-                    <div v-if="!isSearchOpen" class="navbar-end switch-links">
-                        <a
-                            class="navbar-item is-hoverable"
-                            v-if="areBenefitsActive"
-                            @click="toggleSearch"
-                        >
-                            <font-awesome-icon icon="search" />
-                        </a>
-                        <router-link
-                            v-for="item of navItems"
-                            v-bind:key="item.index"
-                            :class="'navbar-item is-hoverable ' + item.toLowerCase()"
-                            :to="'/' + item.toLowerCase()"
-                        >{{item}}</router-link>
-                    </div>
-                    <div v-else class="navbar-end">
-                        <a :class="{ 'search-open': isSearchOpen }">
-                            <div class="field has-addons">
-                                <div class="control">
-                                    <input
-                                        v-model="searchTerm"
-                                        @keyup="handleKeyPress"
-                                        type="text"
-                                        class="input is-info"
-                                        placeholder="Search Benefits"
-                                    />
-                                </div>
-                                <div class="control" @click="toggleSearch">
-                                    <a class="button is-info">Back</a>
-                                </div>
+                <div v-if="!isSearchOpen" class="navbar-end switch-links">
+                    <a
+                        class="navbar-item is-hoverable search"
+                        v-if="areBenefitsActive"
+                        @click="toggleSearch"
+                    >
+                        <font-awesome-icon icon="search" />
+                    </a>
+                    <router-link
+                        v-for="item of navItems"
+                        v-bind:key="item.index"
+                        :class="'navbar-item is-hoverable ' + item.toLowerCase()"
+                        :to="'/' + item.toLowerCase()"
+                    >{{item}}</router-link>
+                </div>
+                <div v-else class="navbar-end">
+                    <a :class="{ 'search-open': isSearchOpen }">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input
+                                    v-model="searchTerm"
+                                    @keyup="handleKeyPress"
+                                    type="text"
+                                    class="input is-info"
+                                    placeholder="Search Benefits"
+                                />
                             </div>
-                        </a>
-                    </div>
-                </transition>
+                            <div class="control" @click="toggleSearch">
+                                <a class="button is-info">Back</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </nav>
     </div>
@@ -102,7 +100,7 @@ export default {
         width: 19rem;
         background: $black;
         &:hover {
-            transition: none !important;
+            transition: none;
         }
     }
     a.navbar-item {
@@ -127,6 +125,7 @@ export default {
             top: 34px;
         }
         &:hover:not(.navbar-logo),
+        &:hover:not(.navbar-logo),
         &:active:not(.navbar-logo),
         &.is-active:not(.navbar-logo) {
             background-color: $menu-bg;
@@ -139,6 +138,13 @@ export default {
         &:focus-within {
             background-color: $menu-bg;
             transition: none;
+        }
+    }
+    a.navbar-item.search {
+        transition: unset;
+        &:after {
+            transition: none;
+            background: transparent;
         }
     }
     a.search-open {
@@ -157,6 +163,9 @@ export default {
     .navbar-end {
         align-items: center;
     }
+    .svg-inline--fa.fa-w-16 {
+        font-size: 1.125rem;
+    }
     @media screen and (max-width: 653px) {
         flex-wrap: wrap;
         justify-content: center !important;
@@ -168,17 +177,8 @@ export default {
             justify-content: center !important;
         }
         a.navbar-item::after {
-            top: 26px;
+            top: 27px;
         }
-    }
-    .toggle-search-enter-active,
-    .toggle-search-leave-active {
-        transition: opacity 0.4s ease;
-    }
-
-    .toggle-search-enter,
-    .toggle-search-leave-active {
-        opacity: 0;
     }
 }
 </style>
