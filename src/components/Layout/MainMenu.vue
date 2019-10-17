@@ -7,8 +7,8 @@
                 </router-link>
             </div>
             <div id="main-menu" class="navbar-menu">
-                <transition name="fade-long">
-                    <div v-if="!isSearchOpen" v-show="!isSearchOpen" class="navbar-end">
+                <transition name="toggle-search">
+                    <div v-if="!isSearchOpen" class="navbar-end switch-links">
                         <a
                             class="navbar-item is-hoverable"
                             v-if="areBenefitsActive"
@@ -35,11 +35,6 @@
                                         placeholder="Search Benefits"
                                     />
                                 </div>
-                                <!-- <div class="control">
-                                    <a class="button is-info">
-                                        <font-awesome-icon icon="search" />
-                                    </a>
-                                </div>-->
                                 <div class="control" @click="toggleSearch">
                                     <a class="button is-info">Back</a>
                                 </div>
@@ -59,15 +54,10 @@ export default {
     components: { FontAwesomeIcon },
     data() {
         return {
-            navItems: ['Benefits', 'Safety', 'Policies'],
             isSearchOpen: false,
             searchTerm: '',
+            navItems: ['Benefits', 'Safety', 'Policies'],
         };
-    },
-    mounted() {
-        console.log('BENEFITS');
-        console.log(this.areBenefitsActive);
-        console.log(this.$route);
     },
     methods: {
         toggleSearch() {
@@ -83,12 +73,10 @@ export default {
                 (key === 'Backspace' || key === 'Delete') &&
                 this.searchTerm.length < 2
             ) {
-                console.log('clear the searchTerm');
                 this.searchTerm = '';
             }
         },
         resetBenefits() {
-            console.log('reset benefits called');
             this.searchTerm = '';
         },
     },
@@ -98,7 +86,7 @@ export default {
         },
     },
     watch: {
-        $route(to, from) {
+        $route() {
             this.isSearchOpen = false;
             this.searchTerm = '';
         },
@@ -107,29 +95,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.hero.is-primary.is-search {
-    .close-button {
-        .fa-window-close {
-            // &:hover {
-            cursor: pointer;
-            font-size: 2rem;
-            // }
-        }
-    }
-    .hero-body {
-        padding: 1rem 1.5rem;
-        background: $primary;
-        .field.has-addons {
-            display: flex;
-            justify-content: flex-end;
-        }
-    }
-}
 .navbar {
     background-color: $menu-bg;
     min-height: 3.4rem;
-    .button.is-info {
-        background: $primary;
+    .navbar-brand a.navbar-item.navbar-logo {
+        width: 19rem;
+        background: $black;
+        &:hover {
+            transition: none !important;
+        }
     }
     a.navbar-item {
         color: #ededed;
@@ -138,6 +112,7 @@ export default {
         font-size: 15px;
         padding: 0 18px;
         margin: 0 4px;
+        align-items: center;
         &:after {
             content: '';
             position: absolute;
@@ -149,6 +124,7 @@ export default {
             transform: scaleX(0);
             background-color: $primary;
             transition: transform 200ms;
+            top: 34px;
         }
         &:hover:not(.navbar-logo),
         &:active:not(.navbar-logo),
@@ -165,30 +141,43 @@ export default {
             transition: none;
         }
     }
-    .navbar-brand a.navbar-item.navbar-logo {
-        width: 19rem;
-        &:hover {
-            transition: none !important;
-        }
-    }
     a.search-open {
-        // color: #ededed;
-        // -webkit-transition: all 5ms ease-in-out;
-        // -webkit-transition: all 250ms ease-in-out;
-        // transition: all 250ms ease-in-out;
         display: flex;
         font-size: 15px;
         padding: 0 18px;
         margin: 0 4px;
         align-items: center;
+        .is-info {
+            border-color: $black;
+        }
     }
-    .fade-long-enter-active,
-    .fade-long-leave-active {
+    .button.is-info {
+        background: $primary;
+    }
+    .navbar-end {
+        align-items: center;
+    }
+    @media screen and (max-width: 653px) {
+        flex-wrap: wrap;
+        justify-content: center !important;
+        border: 1px solid $black;
+        .navbar-brand {
+            min-height: 2.5rem;
+        }
+        .navbar-end {
+            justify-content: center !important;
+        }
+        a.navbar-item::after {
+            top: 26px;
+        }
+    }
+    .toggle-search-enter-active,
+    .toggle-search-leave-active {
         transition: opacity 0.4s ease;
     }
 
-    .fade-long-enter,
-    .fade-long-leave-active {
+    .toggle-search-enter,
+    .toggle-search-leave-active {
         opacity: 0;
     }
 }

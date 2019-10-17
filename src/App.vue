@@ -52,5 +52,8 @@ body,
         }
     }
 }
+.svg-inline--fa {
+    font-size: 1.4rem;
+}
 </style>
 

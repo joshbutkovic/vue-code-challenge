@@ -10,6 +10,12 @@
                     <card :title="item.title" :description="item.description" :key="item.title" />
                 </div>
             </transition-group>
+            <div class="column">
+                <h1 v-if="filteredBenefits.length === 0" class="is-size-5">
+                    No Benefits found for search term
+                    <strong>'{{searchTerm}}'</strong>
+                </h1>
+            </div>
         </div>
     </div>
 </template>
@@ -61,8 +67,8 @@ export default {
 <style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
-    -webkit-transition: all 150ms ease;
-    transition: all 150ms ease;
+    -webkit-transition: all 250ms ease;
+    transition: all 250ms ease;
 }
 
 .fade-enter,
@@ -71,10 +77,10 @@ export default {
 }
 
 .fade-move {
-    -webkit-transition: -webkit-transform 150ms;
-    transition: -webkit-transform 150ms;
-    transition: transform 150ms;
-    transition: transform 150ms, -webkit-transform 150ms;
+    -webkit-transition: -webkit-transform 250ms;
+    transition: -webkit-transform 250ms;
+    transition: transform 250ms;
+    transition: transform 250ms, -webkit-transform 250ms;
 }
 </style>
 

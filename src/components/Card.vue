@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .card {
-    height: 250px;
+    height: 260px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: 1px solid #b4b4b4;
     &:hover {
@@ -40,11 +40,10 @@ export default {
     }
     .card-content {
         padding: 1.125rem;
-
+        min-height: 13rem;
+        max-height: 13rem;
+        overflow-y: scroll;
         .content {
-            min-height: 14rem;
-            max-height: 14rem;
-            overflow-y: scroll;
             & p {
                 font-size: 0.875rem;
             }
