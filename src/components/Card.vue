@@ -32,14 +32,29 @@ export default {
     }
     .card-header {
         background-color: #d21920;
+        align-items: center;
         .card-header-title {
             padding: 7px 16px;
             color: $white;
-            font-size: 15px;
+            font-size: 14px;
+        }
+        .acknowledge-button {
+            margin-right: 1rem;
+            svg {
+                font-size: 1.125rem;
+                path {
+                    transition: all 200ms ease-in-out;
+                    fill: #ededed;
+                    &:hover {
+                        fill: $black;
+                    }
+                }
+            }
         }
     }
     .card-content {
         padding: 1.125rem;
+        padding-bottom: 0;
         min-height: 13rem;
         max-height: 13rem;
         overflow-y: scroll;

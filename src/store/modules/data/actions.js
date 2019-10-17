@@ -5,7 +5,7 @@ export const actions = {
     searchBenefits(context, searchTerm) {
         context.commit('searchBenefits', searchTerm);
     },
-    filteredBenefits(context, benefits) {
-        context.commit('filteredBenefits', benefits);
+    dismissCard(context, cardTitle) {
+        context.commit('dismissCard', cardTitle);
     },
 };

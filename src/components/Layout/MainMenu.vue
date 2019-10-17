@@ -1,51 +1,50 @@
 <template>
-    <div>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <router-link class="navbar-item navbar-logo" to="/">
-                    <img src="../../../src/assets/logo_white.png" />
-                </router-link>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <router-link class="navbar-item navbar-logo" to="/">
+                <img src="../../../src/assets/logo_white.png" />
+            </router-link>
+        </div>
+        <div id="main-menu" class="navbar-menu">
+            <div v-if="!isSearchOpen" class="navbar-end switch-links">
+                <a
+                    class="navbar-item is-hoverable search"
+                    v-if="areBenefitsActive"
+                    @click="toggleSearch"
+                >
+                    <font-awesome-icon icon="search" />
+                </a>
+                <router-link
+                    v-for="item of navItems"
+                    v-bind:key="item.index"
+                    :class="'navbar-item is-hoverable ' + item.toLowerCase()"
+                    :to="'/' + item.toLowerCase()"
+                >{{item}}</router-link>
             </div>
-            <div id="main-menu" class="navbar-menu">
-                <div v-if="!isSearchOpen" class="navbar-end switch-links">
-                    <a
-                        class="navbar-item is-hoverable search"
-                        v-if="areBenefitsActive"
-                        @click="toggleSearch"
-                    >
-                        <font-awesome-icon icon="search" />
-                    </a>
-                    <router-link
-                        v-for="item of navItems"
-                        v-bind:key="item.index"
-                        :class="'navbar-item is-hoverable ' + item.toLowerCase()"
-                        :to="'/' + item.toLowerCase()"
-                    >{{item}}</router-link>
-                </div>
-                <div v-else class="navbar-end">
-                    <a :class="{ 'search-open': isSearchOpen }">
-                        <div class="field has-addons">
-                            <div class="control">
-                                <input
-                                    v-model="searchTerm"
-                                    @keyup="handleKeyPress"
-                                    type="text"
-                                    class="input is-info"
-                                    placeholder="Search Benefits"
-                                />
-                            </div>
-                            <div class="control" @click="toggleSearch">
-                                <a class="button is-info">Back</a>
-                            </div>
+            <div v-else class="navbar-end">
+                <a :class="{ 'search-open': isSearchOpen }">
+                    <div class="field has-addons">
+                        <div class="control">
+                            <input
+                                v-model="searchTerm"
+                                @keyup="handleKeyPress"
+                                type="text"
+                                class="input is-info"
+                                placeholder="Search Benefits"
+                            />
                         </div>
-                    </a>
-                </div>
+                        <div class="control" @click="toggleSearch">
+                            <a class="button is-info">Back</a>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 export default {
     name: 'MainMenu',
@@ -79,6 +78,7 @@ export default {
         },
     },
     computed: {
+        ...mapGetters('app', ['theme']),
         areBenefitsActive() {
             return this.$route.path === '/benefits';
         },
@@ -178,6 +178,26 @@ export default {
         }
         a.navbar-item::after {
             top: 27px;
+        }
+    }
+    // Dark Theme
+    &.is-dark-theme {
+        background-color: #ededed;
+        .navbar-brand a.navbar-item.navbar-logo {
+            background: #ededed;
+            &:hover {
+                transition: none;
+            }
+        }
+        .navbar-menu {
+            background: #ededed;
+            a.navbar-item {
+                color: $black;
+                img {
+                    background: #d6d6d6;
+                    padding: 0.5rem;
+                }
+            }
         }
     }
 }

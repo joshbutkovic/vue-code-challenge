@@ -7,6 +7,7 @@ const state = {
     filteredBenefits: [],
     policies: [],
     safety: [],
+    dismissedCardTitles: [],
 };
 
 const namespaced = true;

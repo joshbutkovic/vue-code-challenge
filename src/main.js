@@ -3,9 +3,14 @@ import App from './App.vue';
 import router from './router';
 import { store } from './store';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import {
+    faSearch,
+    faWindowClose,
+    faChevronCircleRight,
+    faCheckCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faSearch, faWindowClose);
+library.add(faSearch, faWindowClose, faChevronCircleRight, faCheckCircle);
 
 Vue.config.productionTip = false;
 

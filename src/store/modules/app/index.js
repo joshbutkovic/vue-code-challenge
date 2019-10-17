@@ -4,6 +4,7 @@ import { mutations } from './mutations';
 
 const state = {
     searchTerm: '',
+    theme: '',
 };
 
 const namespaced = true;
