@@ -1,0 +1,30 @@
+#app {
+    .section {
+        padding: 1.5rem;
+        .container.is-fluid {
+            @media screen and (min-width: 1024px) {
+                .container.is-fluid {
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                    max-width: none;
+                }
+            }
+        }
+    }
+}
+.navbar,
+.navbar-menu,
+.navbar-start,
+.navbar-end {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-pack: end !important;
+    -ms-flex-pack: end !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+    flex-grow: 1 !important;
+    -ms-flex-negative: 0 !important;
+    flex-shrink: 0 !important;
+    background: black !important;
+}

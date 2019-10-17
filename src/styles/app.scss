@@ -1,0 +1,31 @@
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+html,
+body,
+#app {
+    height: 100% !important;
+    background: #ededed !important;
+    font-family: 'Open Sans', sans-serif, monospace;
+}
+
+.hero {
+    width: 100vw;
+    height: 100vh;
+    .container {
+        @media screen and (max-width: 653px) {
+            text-align: center;
+        }
+    }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: all 500ms ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+    transform: translate(-15px, -15px);
+}

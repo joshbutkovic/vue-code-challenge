@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <main-menu />
+        <transition name="router-fade" mode="out-in">
+            <router-view />
+        </transition>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import MainMenu from './components/Layout/MainMenu';
+import benefitsJson from '../benefits.json';
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    name: 'app',
+    components: { MainMenu },
+    created() {
+        this.$store.dispatch('data/loadData', benefitsJson);
+    },
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import './node_modules/bulma/bulma.sass';
+@import './src/styles/bulma-overrides.scss';
+.router-fade-enter-active,
+.router-fade-leave-active {
+    transition: opacity 300ms ease-in-out;
+}
+
+.router-fade-enter,
+.router-fade-leave-active {
+    opacity: 0;
 }
 </style>
+
