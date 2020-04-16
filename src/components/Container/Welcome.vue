@@ -10,7 +10,7 @@
                 <p class="subtitle">Benefits are now available</p>
                 <router-link
                     class="button is-primary is-large"
-                    to="/vue-example-app/benefits"
+                    to="/vue-sample-app/benefits"
                 >
                     View Benefits
                     <font-awesome-icon icon="chevron-circle-right" />

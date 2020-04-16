@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <router-link class="navbar-item navbar-logo" to="/vue-example-app/"
+            <router-link class="navbar-item navbar-logo" to="/vue-sample-app/"
                 >VueSample</router-link
             >
         </div>
@@ -20,7 +20,7 @@
                     v-for="item of navItems"
                     v-bind:key="item.index"
                     :class="'navbar-item is-hoverable ' + item.toLowerCase()"
-                    :to="'/vue-example-app/' + item.toLowerCase()"
+                    :to="'/vue-sample-app/' + item.toLowerCase()"
                     >{{ item }}</router-link
                 >
             </div>
@@ -66,7 +66,7 @@ export default {
                 this.$store.dispatch('app/setSearchTerm', '');
                 this.searchTerm = '';
             } else {
-                this.$router.push('/vue-example-app/benefits');
+                this.$router.push('benefits');
             }
         },
         handleKeyPress(e) {
@@ -87,7 +87,7 @@ export default {
     computed: {
         ...mapGetters('app', ['theme']),
         areBenefitsActive() {
-            return this.$route.path === '/vue-example-app/benefits';
+            return this.$route.path === '/vue-sample-app/benefits';
         },
     },
     watch: {
