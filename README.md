@@ -1,6 +1,6 @@
 # Vue Sample App
 
-This app was created to demonstrate a simple SPA with Vue.
+This app was created to demonstrate a simple SPA with vue, vuex, and vue-router.
 
 ## Project setup
 ```
