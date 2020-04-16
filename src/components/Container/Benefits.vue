@@ -17,7 +17,7 @@
             </transition-group>
             <transition name="fade" mode="out-in">
                 <div
-                    class="column is-6"
+                    class="column is-6 no-benefits"
                     v-if="filteredBenefits.length === 0 || typeof filteredBenefits === 'undefined'"
                 >
                     <div class="box">
@@ -98,6 +98,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.no-benefits {
+    margin: 0 auto;
+}
 .shuffle-cards-enter-active,
 .shuffle-cards-leave-active {
     -webkit-transition: all 250ms ease;
@@ -114,6 +117,9 @@ export default {
     transition: -webkit-transform 250ms;
     transition: transform 250ms;
     transition: transform 250ms, -webkit-transform 250ms;
+}
+.box .media .media-content {
+    text-align: center;
 }
 </style>
 

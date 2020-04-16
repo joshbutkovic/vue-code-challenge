@@ -1,9 +1,7 @@
 <template>
     <div id="app">
         <main-menu />
-        <transition name="router-fade" mode="out-in">
-            <router-view />
-        </transition>
+        <router-view />
     </div>
 </template>
 
@@ -24,7 +22,7 @@ export default {
 @import './src/styles/bulma-overrides.scss';
 .router-fade-enter-active,
 .router-fade-leave-active {
-    transition: opacity 300ms ease-in-out;
+    transition: opacity 125ms ease-in-out;
 }
 
 .router-fade-enter,

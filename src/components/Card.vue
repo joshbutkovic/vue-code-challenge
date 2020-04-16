@@ -24,8 +24,7 @@ export default {
 <style lang="scss" scoped>
 .card {
     height: 260px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border: 1px solid #b4b4b4;
+    transition: all 150ms cubic-bezier(0.25, 0.8, 0.25, 1);
     &:hover {
         box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25),
             0 5px 5px rgba(0, 0, 0, 0.22);

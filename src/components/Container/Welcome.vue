@@ -4,12 +4,12 @@
             <div class="container">
                 <p class="title">
                     Welcome to
-                    <span>SWITCH</span>
-                    <span>DOCK</span>
+                    <span>Vue</span>
+                    <span>Sample</span>
                 </p>
                 <p class="subtitle">Benefits are now available</p>
                 <router-link class="button is-primary is-large" to="/benefits">
-                    VIEW BENEFITS
+                    View Benefits
                     <font-awesome-icon icon="chevron-circle-right" />
                 </router-link>
             </div>
@@ -39,12 +39,10 @@ export default {
         }
     }
     .button.is-large {
-        font-size: 1.75rem;
-        transition: all 300ms ease-in-out;
+        font-size: 1.5rem;
+        transition: all 150ms ease-in-out;
         &:hover {
-            color: $black;
-            background: hsl(0, 0%, 93%);
-            border: 1px solid $primary;
+            background-color: fade(#d21920, 40%);
         }
         svg {
             margin-left: 0.5rem;

@@ -1,18 +1,12 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <router-link class="navbar-item navbar-logo" to="/">
-                <img src="../../../src/assets/logo_white.png" />
-            </router-link>
+            <router-link class="navbar-item navbar-logo" to="/">VueSample</router-link>
         </div>
         <div id="main-menu" class="navbar-menu">
             <div v-if="!isSearchOpen" class="navbar-end switch-links">
-                <a
-                    class="navbar-item is-hoverable search"
-                    v-if="areBenefitsActive"
-                    @click="toggleSearch"
-                >
-                    <font-awesome-icon icon="search" />
+                <a class="navbar-item is-hoverable search" @click="toggleSearch">
+                    <font-awesome-icon icon="search" aria-disabled="areBenefitsActive" />
                 </a>
                 <router-link
                     v-for="item of navItems"
@@ -58,9 +52,13 @@ export default {
     },
     methods: {
         toggleSearch() {
-            this.isSearchOpen = !this.isSearchOpen;
-            this.$store.dispatch('app/setSearchTerm', '');
-            this.searchTerm = '';
+            if (this.areBenefitsActive) {
+                this.isSearchOpen = !this.isSearchOpen;
+                this.$store.dispatch('app/setSearchTerm', '');
+                this.searchTerm = '';
+            } else {
+                this.$router.push('/benefits');
+            }
         },
         handleKeyPress(e) {
             this.searchTerm = e.target.value;
@@ -97,7 +95,7 @@ export default {
     background-color: $menu-bg;
     min-height: 3.4rem;
     .navbar-brand a.navbar-item.navbar-logo {
-        width: 19rem;
+        font-size: 1.4rem;
         background: $black;
         &:hover {
             transition: none;
