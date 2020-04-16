@@ -2,6 +2,10 @@
 
 This app was created to demonstrate a simple SPA with vue, vuex, and vue-router.  Try the search functionality.
 
+Hosted on Github Pages:
+
+https://joshbutkovic.github.io/vue-sample-app/
+
 ## Project setup
 ```
 yarn install
