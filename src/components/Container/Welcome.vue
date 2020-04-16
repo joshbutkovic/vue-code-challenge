@@ -8,7 +8,10 @@
                     <span>Sample</span>
                 </p>
                 <p class="subtitle">Benefits are now available</p>
-                <router-link class="button is-primary is-large" to="/benefits">
+                <router-link
+                    class="button is-primary is-large"
+                    to="/vue-example-app/benefits"
+                >
                     View Benefits
                     <font-awesome-icon icon="chevron-circle-right" />
                 </router-link>
@@ -50,5 +53,3 @@ export default {
     }
 }
 </style>
-
-

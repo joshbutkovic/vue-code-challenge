@@ -1,19 +1,28 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <router-link class="navbar-item navbar-logo" to="/">VueSample</router-link>
+            <router-link class="navbar-item navbar-logo" to="/vue-example-app/"
+                >VueSample</router-link
+            >
         </div>
         <div id="main-menu" class="navbar-menu">
             <div v-if="!isSearchOpen" class="navbar-end switch-links">
-                <a class="navbar-item is-hoverable search" @click="toggleSearch">
-                    <font-awesome-icon icon="search" aria-disabled="areBenefitsActive" />
+                <a
+                    class="navbar-item is-hoverable search"
+                    @click="toggleSearch"
+                >
+                    <font-awesome-icon
+                        icon="search"
+                        aria-disabled="areBenefitsActive"
+                    />
                 </a>
                 <router-link
                     v-for="item of navItems"
                     v-bind:key="item.index"
                     :class="'navbar-item is-hoverable ' + item.toLowerCase()"
-                    :to="'/' + item.toLowerCase()"
-                >{{item}}</router-link>
+                    :to="'/vue-example-app/' + item.toLowerCase()"
+                    >{{ item }}</router-link
+                >
             </div>
             <div v-else class="navbar-end">
                 <a :class="{ 'search-open': isSearchOpen }">
@@ -57,7 +66,7 @@ export default {
                 this.$store.dispatch('app/setSearchTerm', '');
                 this.searchTerm = '';
             } else {
-                this.$router.push('/benefits');
+                this.$router.push('/vue-example-app/benefits');
             }
         },
         handleKeyPress(e) {
@@ -78,7 +87,7 @@ export default {
     computed: {
         ...mapGetters('app', ['theme']),
         areBenefitsActive() {
-            return this.$route.path === '/benefits';
+            return this.$route.path === '/vue-example-app/benefits';
         },
     },
     watch: {

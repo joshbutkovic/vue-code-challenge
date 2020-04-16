@@ -12,22 +12,22 @@ export default new Router({
     linkActiveClass: 'is-active',
     routes: [
         {
-            path: '/',
+            path: '/vue-example-app/',
             name: 'Welcome',
             component: Welcome,
         },
         {
-            path: '/benefits',
+            path: '/vue-example-app/benefits',
             name: 'Benefits',
             component: Benefits,
         },
         {
-            path: '/policies',
+            path: '/vue-example-app/policies',
             name: 'Policies',
             component: Policies,
         },
         {
-            path: '/safety',
+            path: '/vue-example-app/safety',
             name: 'Safety',
             component: Safety,
         },
